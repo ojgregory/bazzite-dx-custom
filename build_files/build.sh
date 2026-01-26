@@ -14,7 +14,7 @@ dnf5 install -y --skip-unavailable emacs neovim coolercontrol liquidctl openraze
 
 dnf5 copr -y enable avengemedia/dms
 dnf5 install -y niri dms
-systemctl -y --global add-wants niri.service dms
+systemctl --global add-wants niri.service dms
 
 dnf5 -y copr disable avengemedia/dms
 # Use a COPR Example:
