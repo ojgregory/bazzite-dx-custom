@@ -13,10 +13,12 @@ set -ouex pipefail
 dnf5 install -y --skip-unavailable emacs neovim coolercontrol liquidctl openrazer-daemon cmake libvterm libtool mupdf mupdf-devel mupdf-libs emacs-jinx
 
 dnf5 copr -y enable avengemedia/dms
-dnf5 install -y niri dms
+dnf5 install -y --setopt=install_weak_deps=True niri dms
 systemctl --global add-wants niri.service dms
-
+dnf5 copr -y enable scottames/ghostty
+dnf5 install -y ghostty
 dnf5 -y copr disable avengemedia/dms
+dnf5 -y copr disable scottames/ghostty
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
