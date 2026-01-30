@@ -23,6 +23,10 @@ dnf5 -y copr disable scottames/ghostty
 dnf5 install -y kernel-devel
 dnf5 config-manager -y addrepo --from-repofile=https://openrazer.github.io/hardware:razer.repo
 dnf5 install -y openrazer-meta
+
+dnf5 -y copr enable jfaracco/amdgpu_top
+dnf5 -y install amdgpu_top
+dnf5 -y copr disable jfaracco/amdgpu_top
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
