@@ -10,7 +10,7 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-dnf5 install -y --skip-unavailable emacs neovim coolercontrol liquidctl openrazer-daemon cmake libvterm libtool mupdf mupdf-devel mupdf-libs emacs-jinx
+dnf5 install -y --skip-unavailable emacs neovim coolercontrol liquidctl openrazer-daemon cmake libvterm libtool mupdf mupdf-devel mupdf-libs emacs-jinx discord
 
 dnf5 copr -y enable avengemedia/dms
 dnf5 install -y --setopt=install_weak_deps=True niri dms
