@@ -35,7 +35,7 @@ dnf5 -y copr disable jfaracco/amdgpu_top
 # Disable COPRs so they don't end up enabled on the final image:
 # dnf5 -y copr disable ublue-os/staging
 
-curl -fsSL https://www.maccel.org/install.sh | sh
+#curl -fsSL https://www.maccel.org/install.sh | sh
 
 #### Example for enabling a System Unit File
 
