@@ -10,10 +10,15 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-dnf5 install -y --skip-unavailable emacs neovim coolercontrol liquidctl openrazer-daemon cmake libvterm libtool mupdf mupdf-devel mupdf-libs emacs-jinx dkms 
+dnf5 install -y --skip-unavailable emacs neovim coolercontrol liquidctl openrazer-daemon cmake libvterm libtool mupdf mupdf-devel mupdf-libs emacs-jinx dkms
 dnf5 install -y google-noto-sans-ui-fonts google-noto-sans-fonts
 dnf5 install -y openmw
+
+dnf5 install -y \
+  https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+  https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 dnf5 --enablerepo=rpmfusion-nonfree -y install discord
+dnf5 remove -y rpmfusion-free-release rpmfusion-nonfree-release
 
 dnf5 copr -y enable avengemedia/dms
 dnf5 install -y --setopt=install_weak_deps=True niri dms
