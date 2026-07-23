@@ -8,6 +8,17 @@ set -ouex pipefail
 # RPMfusion repos are available by default in ublue main images
 # List of rpmfusion packages can be found here:
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
+echo "=== /opt debug ==="
+ls -ld /opt || true
+stat /opt || true
+readlink -f /opt || true
+file /opt || true
+ 
+if [ -e /opt ] && [ ! -d /opt ]; then
+    echo "/opt exists but is not a directory"
+    exit 1
+fi
+ 
 mkdir -p /opt
 
 # this installs a package from fedora repos
