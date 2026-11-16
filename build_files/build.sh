@@ -12,13 +12,19 @@ set -ouex pipefail
 if [ -L /opt ] && [ ! -e /opt ]; then
     rm -f /opt
 fi
- 
+
 mkdir -p /var/opt
 ln -sfn /var/opt /opt
 
-dnf5 install -y --skip-unavailable emacs neovim coolercontrol liquidctl openrazer-daemon cmake libvterm libtool mupdf mupdf-devel mupdf-libs emacs-jinx dkms
+dnf5 -y copr enable codifryed/CoolerControl
+dnf5 -y copr enable hardware:razer/openrazer
+
+dnf5 install -y --skip-unavailable emacs neovim coolercontrol liquidctl openrazer-daemon cmake libvterm libtool mupdf mupdf-devel mupdf-libs emacs-jinx
 dnf5 install -y google-noto-sans-ui-fonts google-noto-sans-fonts
 dnf5 install -y openmw
+
+dnf5 -y copr disable codifryed/CoolerControl
+dnf5 -y copr disable hardware:razer/openrazer
 
 dnf5 install -y \
   https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
