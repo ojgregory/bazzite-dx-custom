@@ -1,7 +1,8 @@
 #!/bin/bash
 
 set -ouex pipefail
-
+ls -al
+ctx/build-hermes-kms.sh
 ### Install packages
 
 # Packages can be installed from any enabled yum repo on the image.
@@ -17,14 +18,14 @@ mkdir -p /var/opt
 ln -sfn /var/opt /opt
 
 dnf5 -y copr enable codifryed/CoolerControl
-dnf5 -y copr enable hardware:razer/openrazer
+#dnf5 -y copr enable hardware:razer/openrazer
 
 dnf5 install -y --skip-unavailable emacs neovim coolercontrol liquidctl openrazer-daemon cmake libvterm libtool mupdf mupdf-devel mupdf-libs emacs-jinx
 dnf5 install -y google-noto-sans-ui-fonts google-noto-sans-fonts
 dnf5 install -y openmw
 
 dnf5 -y copr disable codifryed/CoolerControl
-dnf5 -y copr disable hardware:razer/openrazer
+#dnf5 -y copr disable hardware:razer/openrazer
 
 dnf5 install -y \
   https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
@@ -40,7 +41,9 @@ dnf5 install -y ghostty
 dnf5 -y copr disable avengemedia/dms
 dnf5 -y copr disable scottames/ghostty
 
-dnf5 install -y kernel-devel
+dnf5 copr -y enable rok/cdemu
+dnf5 copr -y enable ublue-os/akmods
+
 #dnf5 config-manager -y addrepo --from-repofile=https://openrazer.github.io/hardware:razer.repo
 #dnf5 install -y openrazer-meta
 
@@ -55,7 +58,6 @@ dnf5 -y copr disable jfaracco/amdgpu_top
 # dnf5 -y copr disable ublue-os/staging
 
 #curl -fsSL https://www.maccel.org/install.sh | sh
-
 #### Example for enabling a System Unit File
 
 systemctl enable podman.socket
